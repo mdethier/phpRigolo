@@ -7,8 +7,33 @@
     <p>Calculez vous même votre note en utilisant le formulaire suivant. Attention, les notes sont dans le fichier note.txt au format JSON, vous devez faire la correspondance entre ces données et les données envoyées par le formulaire.
     </p>
 
-<!-- Début de votre PHP-->
-<div class="MegaNote">20/20</div>
+<!-- Début de votre PHP
+<div-- class="MegaNote">20/20</div-->
+<?php
+$contenuFichier = file_get_contents("note.txt");
+$bareme = json_decode($contenuFichier);
+
+if (isset($_POST["helpers"])) {
+
+ /* var_dump($bareme->{$_POST["helpers"]});
+  var_dump($bareme->{$_POST["classe"]});
+  var_dump($bareme->{$_POST["note"]});
+  var_dump($bareme->{$_POST["menu"]});
+  var_dump($bareme->{$_POST["referencement"]});
+  var_dump ($bareme->{$_POST["vignettes"]});
+  var_dump ($bareme->{$_POST["morpion"]});
+  var_dump ($bareme->{$_POST["news"]});
+  var_dump ($bareme->{$_POST["csv"]}); */
+  
+ $total = $bareme->{$_POST["helpers"]} + $bareme->{$_POST["classe"]} + $bareme->{$_POST["note"]} + $bareme->{$_POST["menu"]} + $bareme->{$_POST["referencement"]} + $bareme->{$_POST["vignettes"]} + $bareme->{$_POST["morpion"]} + $bareme->{$_POST["news"]} + $bareme->{$_POST["csv"]};
+
+
+  echo '<div class="MegaNote">'.$total.'/20</div>';
+}
+
+?>
+
+
 <!-- Fin de votre PHP-->
     
 <h2>Avez-vous réussi les exercices suivants :</h2>
